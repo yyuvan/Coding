@@ -171,17 +171,73 @@
 # swap2(int(input("Enter a: ")), int(input("Enter b: ")))
 
 
-def divide(a,b):
-    sign=(-1 if ((a < 0) ^ (b < 0)) else 1)
-    a=abs(a)
-    b=abs(b)
-    quotient=0
-    temp=0
-    for i in range(31,-1,-1):
-        if (temp + (b << i) <= a):
-            temp += b << i
-            quotient |= 1 << i
-    if (sign == -1):
-        quotient = -quotient
-    return quotient
-print(divide(int(input("Enter dividend: ")), int(input("Enter divisor: "))))
+# def divide(a,b):
+#     sign=(-1 if ((a < 0) ^ (b < 0)) else 1)
+#     a=abs(a)
+#     b=abs(b)
+#     quotient=0
+#     temp=0
+#     for i in range(31,-1,-1):
+#         if (temp + (b << i) <= a):
+#             temp += b << i
+#             quotient |= 1 << i
+#     if (sign == -1):
+#         quotient =-quotient
+#     return quotient
+# print(divide(int(input("Enter dividend: ")), int(input("Enter divisor: "))))
+
+
+# #Powersets
+# def possibleSubsets(set, setsize):
+#     for i in range(2 ** setsize):
+#         for j in range(setsize):
+#             if i & (1 << j):
+#                 print(set[j])
+# #         print("")
+# PowerSetSize = 8
+# SetSize = 3
+# ourset = ['a', 'b', 'c']
+# counter = 0
+# for a in range(0, PowerSetSize):
+
+#         for b in range(0, SetSize):
+
+#             # Check if bth bit in 'a' is set 
+
+#             if((counter & (1 << b)) > 0):
+
+#                 # If set then print bth element 
+
+#                 print(ourset[b], end = "")
+
+#         print("")
+# import math
+# def printPowerSet(set, set_size):
+#     pow_set_size = int(math.pow(2, set_size))
+#     outer=0
+#     inner=0
+#     for outer in range(0, pow_set_size):
+#         for inner in range(0, set_size):
+#             if (outer & (1 << inner)) > 0:
+#                 print(set[inner], end="")
+#         print("")
+# size=int(input("Enter size of set: "))
+# set=   []
+# for i in range(0,size):
+#     element=input("Enter element: ")
+#     set.append(element)
+# printPowerSet(set,size)
+
+def totalFlips(number1,number2):
+    count = 0
+    while (number1 > 0 and number2 > 0):
+        t1=number1 & 1
+        t2=number2 & 1
+        if t1 != t2:
+            count += 1
+        number1 = number1 >> 1
+        number2 = number2 >> 1
+    return count
+number1=int(input("Enter first number: "))
+number2=int(input("Enter second number: "))
+print("Total flips required: ", totalFlips(number1,number2))
